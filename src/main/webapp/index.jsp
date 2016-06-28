@@ -16,7 +16,7 @@
     HttpHelper helper = new HttpHelper();
     try {
         for (ItemEntity item : helper.getBody().getEntityList()) {
-          out.println(item);
+          %><p><%out.println(item);%></p><%
         }
     } catch (JAXBException e) {
         e.printStackTrace();

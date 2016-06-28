@@ -1,6 +1,6 @@
 package cz.brno.map;
 
-import cz.brno.map.model.ItemsCollection;
+import cz.brno.map.model.Collection.ItemsCollection;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.CloseableHttpClient;
