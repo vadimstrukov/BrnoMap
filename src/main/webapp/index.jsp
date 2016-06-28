@@ -1,4 +1,9 @@
 <%@ page import="cz.brno.map.HttpHelper" %>
+<%@ page import="org.xml.sax.SAXException" %>
+<%@ page import="javax.xml.parsers.ParserConfigurationException" %>
+<%@ page import="javax.xml.xpath.XPathExpressionException" %>
+<%@ page import="cz.brno.map.model.ItemEntity" %>
+<%@ page import="javax.xml.bind.JAXBException" %>
 <html>
 
 <head>
@@ -9,7 +14,13 @@
 <%-- START --%>
 <%
     HttpHelper helper = new HttpHelper();
-    out.print(helper.getBody());
+    try {
+        for (ItemEntity item : helper.getBody().getEntityList()) {
+          out.println(item);
+        }
+    } catch (JAXBException e) {
+        e.printStackTrace();
+    }
 %>
 <%-- END --%>
 
