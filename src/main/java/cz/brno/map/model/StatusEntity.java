@@ -8,7 +8,6 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import java.io.Serializable;
-import java.util.Date;
 
 /**
  * Created by doc on 28.06.2016.
@@ -21,10 +20,10 @@ public class StatusEntity implements Serializable {
     @Getter
     @Setter
     @XmlElement(name = "stamp")
-    Date date;
+    String date;
 
     @Getter
     @Setter
     @XmlElement(name = "otevrena")
-    byte status;
+    int status;
 }

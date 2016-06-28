@@ -25,15 +25,13 @@ public class SlopeEntity implements Serializable {
     @Getter @Setter String name;
 
     @XmlElement(name = "delka")
-    @Getter @Setter Integer length;
+    @Getter @Setter String length;
 
     @XmlElement(name = "obtiznost")
     @Getter @Setter String difficulty;
 
     @XmlElement(name = "stav")
     @Getter @Setter StatusEntity statusEntity;
-
-
 
     public String toString(){
         return "Id: "+ id + "\t" +
