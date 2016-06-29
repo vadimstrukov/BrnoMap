@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by strukov on 6/29/16.
@@ -23,8 +24,13 @@ public class ItemController {
     @Inject
     private ItemService itemService;
 
-    @RequestMapping(value = "/item", method = RequestMethod.GET)
+    @RequestMapping(value = "/items", method = RequestMethod.GET)
     public ResponseEntity<ItemEntity> getById(@RequestParam(value = "id") String id){
         return new ResponseEntity<>(itemService.findById(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/items/all", method = RequestMethod.GET)
+    public ResponseEntity<List<ItemEntity>> getAll(){
+        return new ResponseEntity<>(itemService.findAll(), HttpStatus.OK);
     }
 }

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Created by strukov on 6/29/16.
@@ -22,5 +24,15 @@ public class ItemServiceImpl implements ItemService {
     @Override
     public ItemEntity findById(final String id) {
         return httpHelper.getBody().getEntityList().stream().filter(item->item.getId().equals(id)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<ItemEntity> findAll() {
+        return httpHelper.getBody().getEntityList();
+    }
+
+    @Override
+    public ItemEntity findByDate(Date date) {
+        return null;
     }
 }
