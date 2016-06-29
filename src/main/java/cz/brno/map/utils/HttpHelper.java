@@ -1,4 +1,4 @@
-package cz.brno.map;
+package cz.brno.map.utils;
 
 import cz.brno.map.model.collection.ItemsCollection;
 import org.apache.http.client.ClientProtocolException;

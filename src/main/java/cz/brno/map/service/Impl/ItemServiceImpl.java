@@ -1,10 +1,8 @@
 package cz.brno.map.service.Impl;
 
-import cz.brno.map.HttpHelper;
+import cz.brno.map.utils.HttpHelper;
 import cz.brno.map.model.ItemEntity;
 import cz.brno.map.service.ItemService;
-import org.apache.http.client.HttpClient;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
