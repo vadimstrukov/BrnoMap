@@ -1,7 +1,7 @@
-package cz.brno.map.model.Collection;
+package cz.brno.map.model.collection;
 
 import com.google.common.collect.Lists;
-import cz.brno.map.model.LiftEntity;
+import cz.brno.map.model.SlopeEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -15,12 +15,12 @@ import java.util.List;
  * Created by doc on 28.06.2016.
  */
 
-@XmlRootElement(name = "vleky")
+@XmlRootElement(name = "sjezdovky")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class LiftsCollection {
+public class SlopesCollection {
 
     @Getter
     @Setter
-    @XmlElement(name = "vlek")
-    private List<LiftEntity> entityList = Lists.newArrayList();
+    @XmlElement(name = "sjezdovka")
+    private List<SlopeEntity> entityList = Lists.newArrayList();
 }

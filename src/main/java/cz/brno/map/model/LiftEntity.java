@@ -23,16 +23,20 @@ public class LiftEntity implements Serializable {
     private String id;
 
     @XmlElement(name = "typ")
-    @Getter @Setter String type;
+    @Getter @Setter
+    private String type;
 
     @XmlElement(name = "nazev")
-    @Getter @Setter String name;
+    @Getter @Setter
+    private String name;
 
     @XmlElement(name = "umisteni")
-    @Getter @Setter String location;
+    @Getter @Setter
+    private String location;
 
     @XmlElement(name = "stav")
-    @Getter @Setter StatusEntity statusEntity;
+    @Getter @Setter
+    private StatusEntity statusEntity;
 
 
 
@@ -41,6 +45,6 @@ public class LiftEntity implements Serializable {
                 "Name: " + name + "\t" +
                 "Type: " + type + "\t" +
                 "location: " + location + "\t" +
-                "Status: " + statusEntity.status + "\n";
+                "Status: " + statusEntity.getStatus() + "\n";
     }
 }

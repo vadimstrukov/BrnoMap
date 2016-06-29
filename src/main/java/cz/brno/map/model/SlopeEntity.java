@@ -22,23 +22,23 @@ public class SlopeEntity implements Serializable {
     private String id;
 
     @XmlElement(name = "nazev")
-    @Getter @Setter String name;
+    @Getter @Setter private String name;
 
     @XmlElement(name = "delka")
-    @Getter @Setter String length;
+    @Getter @Setter private String length;
 
     @XmlElement(name = "obtiznost")
-    @Getter @Setter String difficulty;
+    @Getter @Setter private String difficulty;
 
     @XmlElement(name = "stav")
-    @Getter @Setter StatusEntity statusEntity;
+    @Getter @Setter private StatusEntity statusEntity;
 
     public String toString(){
         return "Id: "+ id + "\t" +
                 "Name: " + name + "\t" +
                 "Length: " + length + "\t" +
                 "Difficulty: " + difficulty + "\t" +
-                "Status: " + statusEntity.status + "\n";
+                "Status: " + statusEntity.getStatus() + "\n";
     }
 
 }

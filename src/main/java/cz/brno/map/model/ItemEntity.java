@@ -1,7 +1,7 @@
 package cz.brno.map.model;
 
-import cz.brno.map.model.Collection.LiftsCollection;
-import cz.brno.map.model.Collection.SlopesCollection;
+import cz.brno.map.model.collection.LiftsCollection;
+import cz.brno.map.model.collection.SlopesCollection;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,17 +23,17 @@ public class ItemEntity implements Serializable{
     @XmlElement(name = "id-aldr")
     private String id;
 
-    @Getter @Setter String name;
-    @Getter @Setter String type;
-    @Getter @Setter String description;
+    @Getter @Setter private String name;
+    @Getter @Setter private String type;
+    @Getter @Setter private String description;
 
     @Getter @Setter
     @XmlElement(name = "vleky")
-    LiftsCollection liftsCollection;
+    private LiftsCollection liftsCollection;
 
     @Getter @Setter
     @XmlElement(name = "sjezdovky")
-    SlopesCollection slopesCollection;
+    private SlopesCollection slopesCollection;
 
     public String toString(){
         return "Id: "+ id + "\n" +

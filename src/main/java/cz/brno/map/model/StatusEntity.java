@@ -17,13 +17,14 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class StatusEntity implements Serializable {
 
+
     @Getter
     @Setter
     @XmlElement(name = "stamp")
-    String date;
+    private String date;
 
     @Getter
     @Setter
     @XmlElement(name = "otevrena")
-    int status;
+    private int status;
 }

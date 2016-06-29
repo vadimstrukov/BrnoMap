@@ -1,7 +1,7 @@
-package cz.brno.map.model.Collection;
+package cz.brno.map.model.collection;
 
 import com.google.common.collect.Lists;
-import cz.brno.map.model.SlopeEntity;
+import cz.brno.map.model.ItemEntity;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -9,18 +9,19 @@ import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.io.Serializable;
 import java.util.List;
 
 /**
- * Created by doc on 28.06.2016.
+ * Created by strukov on 6/28/16.
  */
-
-@XmlRootElement(name = "sjezdovky")
+@XmlRootElement(name = "seznam.cz")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class SlopesCollection {
+public class ItemsCollection implements Serializable {
 
     @Getter
     @Setter
-    @XmlElement(name = "sjezdovka")
-    private List<SlopeEntity> entityList = Lists.newArrayList();
+    @XmlElement(name = "item")
+    private List<ItemEntity> entityList = Lists.newArrayList();
+
 }
