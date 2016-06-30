@@ -28,7 +28,7 @@ public class XmlConverter<T> implements IConverter<T> {
     @Override
     @SuppressWarnings(value = "unchecked")
     //TODO: more than one class can be added
-    public T deserialize(Class ... classesToDeserialize) {
+    public T deserialize(Class classToDeserialize) {
 
         try  {
             CloseableHttpClient httpClient = HttpClients.createDefault();
@@ -36,7 +36,7 @@ public class XmlConverter<T> implements IConverter<T> {
             CloseableHttpResponse response = httpClient.execute(httpGet);
             HttpEntity entity = response.getEntity();
 
-            JAXBContext jaxbContext = JAXBContext.newInstance(classesToDeserialize);
+            JAXBContext jaxbContext = JAXBContext.newInstance(classToDeserialize);
             Unmarshaller unmarshaller = jaxbContext.createUnmarshaller();
             T object = (T) unmarshaller.unmarshal(entity.getContent());
 

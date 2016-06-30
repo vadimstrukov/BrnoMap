@@ -18,27 +18,24 @@ import java.util.stream.Collectors;
 @Repository
 public class LiftDaoImpl implements LiftDao {
 
-    @Inject
-    IConverter<LiftsCollection> converter;
 
     @Inject
-    IConverter<ItemsCollection> itemsConverter;
+    IConverter<ItemsCollection> converter;
 
     @Override
     public List<LiftEntity> findAll() {
-        return converter.deserialize(LiftsCollection.class).getEntityList();
+        return null;
     }
 
     @Override
     public LiftEntity findById(String id) {
-        return converter.deserialize(LiftsCollection.class).getEntityList().stream().
-                filter(item->item.getId().equals(id)).findFirst().orElse(null);
+        return null;
     }
 
 
     @Override
     public List<LiftEntity> findLiftsByItemId(String id) {
-       return itemsConverter.deserialize(ItemsCollection.class).getEntityList().stream().
+       return converter.deserialize(ItemsCollection.class).getEntityList().stream().
                filter(item->item.getId().equals(id)).findFirst().orElse(null).
                getLiftsCollection().getEntityList();
     }
@@ -46,7 +43,7 @@ public class LiftDaoImpl implements LiftDao {
     @Override
     public LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId) {
 
-        return itemsConverter.deserialize(ItemsCollection.class).getEntityList().stream().
+        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
                 filter(item -> item.getId().equals(itemId)).findFirst().orElse(null).
                 getLiftsCollection().getEntityList().stream().
                 filter(lift -> lift.getId().equals(liftId)).findFirst().orElse(null);
@@ -54,13 +51,12 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public List<LiftEntity> findLiftsByDate(Date date) {
-        return converter.deserialize(LiftsCollection.class).getEntityList().stream().
-                filter(item -> item.getStatusEntity().getDate().equals(date)).collect(Collectors.toList());
+        return null;
     }
 
     @Override
     public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
-        return itemsConverter.deserialize(ItemsCollection.class).getEntityList().stream().
+        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
                 filter(item->item.getId().equals(itemid)).findFirst().orElse(null).
                 getLiftsCollection().getEntityList().stream().
                 filter(item->item.getStatusEntity().getDate().equals(date)).collect(Collectors.toList());
