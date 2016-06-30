@@ -1,6 +1,8 @@
 package cz.brno.map.dao.impl;
 
+import com.google.common.collect.Lists;
 import cz.brno.map.dao.SlopeDao;
+import cz.brno.map.model.ItemEntity;
 import cz.brno.map.model.SlopeEntity;
 import cz.brno.map.model.collection.ItemsCollection;
 import cz.brno.map.utils.IConverter;
@@ -8,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Created by doc on 30.06.2016.
@@ -17,18 +18,24 @@ import java.util.stream.Collectors;
 @Repository
 public class SlopeDaoImpl implements SlopeDao {
 
-
     @Inject
     IConverter<ItemsCollection> converter;
 
     @Override
     public List<SlopeEntity> findAll() {
-        return null;
+
+        List<SlopeEntity> temp = Lists.newArrayList();
+
+        for (ItemEntity item : converter.deserialize(ItemsCollection.class).getEntityList()){
+            temp.addAll(item.getSlopesCollection().getEntityList());
+        }
+
+        return temp;
     }
 
     @Override
     public SlopeEntity findById(String id) {
-        return null;
+        return findAll().stream().filter(slope -> slope.getId().equals(id)).findFirst().orElse(null);
     }
 
     @Override

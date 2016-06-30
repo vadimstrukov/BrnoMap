@@ -1,9 +1,10 @@
 package cz.brno.map.dao.impl;
 
+import com.google.common.collect.Lists;
 import cz.brno.map.dao.LiftDao;
+import cz.brno.map.model.ItemEntity;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.model.collection.ItemsCollection;
-import cz.brno.map.model.collection.LiftsCollection;
 import cz.brno.map.utils.IConverter;
 import org.springframework.stereotype.Repository;
 
@@ -15,24 +16,30 @@ import java.util.stream.Collectors;
 /**
  * Created by doc on 30.06.2016.
  */
+
 @Repository
 public class LiftDaoImpl implements LiftDao {
-
 
     @Inject
     IConverter<ItemsCollection> converter;
 
     @Override
     public List<LiftEntity> findAll() {
-        return null;
+
+        List<LiftEntity> temp = Lists.newArrayList();
+
+        for (ItemEntity item : converter.deserialize(ItemsCollection.class).getEntityList()){
+            temp.addAll(item.getLiftsCollection().getEntityList());
+        }
+
+        return temp;
     }
 
     @Override
     public LiftEntity findById(String id) {
-        return null;
+        return findAll().stream().filter(lift -> lift.getId().equals(id)).findFirst().orElse(null);
     }
-
-
+    
     @Override
     public List<LiftEntity> findLiftsByItemId(String id) {
        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
@@ -42,7 +49,6 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId) {
-
         return converter.deserialize(ItemsCollection.class).getEntityList().stream().
                 filter(item -> item.getId().equals(itemId)).findFirst().orElse(null).
                 getLiftsCollection().getEntityList().stream().
