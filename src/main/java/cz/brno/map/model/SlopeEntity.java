@@ -31,14 +31,14 @@ public class SlopeEntity implements Serializable {
     @Getter @Setter private String difficulty;
 
     @XmlElement(name = "stav")
-    @Getter @Setter private StatusEntity statusEntity;
+    @Getter @Setter private SlopeStatusEntity slopeStatusEntity;
 
     public String toString(){
         return "Id: "+ id + "\t" +
                 "Name: " + name + "\t" +
                 "Length: " + length + "\t" +
                 "Difficulty: " + difficulty + "\t" +
-                "Status: " + statusEntity.getStatus() + "\n";
+                "Status: " + slopeStatusEntity.getStatus() + "\n";
     }
 
 }

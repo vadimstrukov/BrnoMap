@@ -36,7 +36,7 @@ public class LiftEntity implements Serializable {
 
     @XmlElement(name = "stav")
     @Getter @Setter
-    private StatusEntity statusEntity;
+    private LiftStatusEntity liftStatusEntity;
 
 
 
@@ -45,6 +45,6 @@ public class LiftEntity implements Serializable {
                 "Name: " + name + "\t" +
                 "Type: " + type + "\t" +
                 "location: " + location + "\t" +
-                "Status: " + statusEntity.getStatus() + "\n";
+                "Status: " + liftStatusEntity.getStatus() + "\n";
     }
 }

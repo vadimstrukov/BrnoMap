@@ -1,12 +1,13 @@
 package cz.brno.map.model;
 
-import cz.brno.map.utils.ZonedDateTimeXmlAdapter;
+import cz.brno.map.utils.DateTimeXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.xml.bind.annotation.*;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
+import java.time.OffsetDateTime;
 import java.time.ZonedDateTime;
 import java.util.Date;
 
@@ -16,14 +17,14 @@ import java.util.Date;
 
 @XmlRootElement(name = "stav")
 @XmlAccessorType(XmlAccessType.FIELD)
-public class StatusEntity implements Serializable {
+public class SlopeStatusEntity implements Serializable {
 
 
     @Getter
     @Setter
     @XmlElement(name = "stamp")
-    @XmlJavaTypeAdapter(ZonedDateTimeXmlAdapter.class)
-    private ZonedDateTime date;
+    @XmlJavaTypeAdapter(DateTimeXmlAdapter.class)
+    private Date date;
 
     @Getter
     @Setter

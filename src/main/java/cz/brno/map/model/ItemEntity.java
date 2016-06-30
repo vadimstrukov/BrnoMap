@@ -35,11 +35,8 @@ public class ItemEntity implements Serializable{
     @XmlElement(name = "sjezdovky")
     private SlopesCollection slopesCollection;
 
-    public String toString(){
-        return "Id: "+ id + "\n" +
-                "Name: " + name + "\n" +
-                "Type: " + type + "\n" +
-                "Description: " + description + "\n\n";
-    }
+    @Getter @Setter
+    @XmlElement(name = "otevreno")
+    private String status;
 
 }

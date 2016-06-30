@@ -3,7 +3,6 @@ package cz.brno.map.dao.impl;
 import cz.brno.map.dao.LiftDao;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.model.collection.ItemsCollection;
-import cz.brno.map.model.collection.LiftsCollection;
 import cz.brno.map.utils.IConverter;
 import org.springframework.stereotype.Repository;
 
@@ -56,9 +55,10 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
-        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
-                filter(item->item.getId().equals(itemid)).findFirst().orElse(null).
-                getLiftsCollection().getEntityList().stream().
-                filter(item->item.getStatusEntity().getDate().equals(date)).collect(Collectors.toList());
+//        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
+//                filter(item->item.getId().equals(itemid)).findFirst().orElse(null).
+//                getLiftsCollection().getEntityList().stream().
+//                filter(item->item.getLiftStatusEntity().getDate().equals(date)).collect(Collectors.toList());
+        return null;
     }
 }
