@@ -14,7 +14,4 @@ import java.util.List;
 
 public interface ItemService extends BaseService<ItemEntity> {
     ItemEntity findByDate(Date date);
-
-    List<SlopeEntity> getSlopesByItemId(String id);
-    List<LiftEntity> getLiftsByItemId(String id);
 }

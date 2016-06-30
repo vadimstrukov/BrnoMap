@@ -36,13 +36,4 @@ public class ItemController {
         return new ResponseEntity<>(itemService.findAll(), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/items/{id}/slopes", method = RequestMethod.GET)
-    public ResponseEntity<List<SlopeEntity>> getSlopesByItemId(@PathVariable("id") String id){
-        return new ResponseEntity<>(itemService.getSlopesByItemId(id), HttpStatus.OK);
-    }
-
-    @RequestMapping(value = "/items/{id}/lifts", method = RequestMethod.GET)
-    public ResponseEntity<List<LiftEntity>> getLiftsByItemId(@PathVariable("id") String id){
-        return new ResponseEntity<>(itemService.getLiftsByItemId(id), HttpStatus.OK);
-    }
 }

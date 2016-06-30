@@ -38,14 +38,5 @@ public class ItemServiceImpl implements ItemService {
         return null;
     }
 
-    @Override
-    public List<SlopeEntity> getSlopesByItemId(String id) {
-        return itemDao.getSlopesByItemId(id);
-    }
-
-    @Override
-    public List<LiftEntity> getLiftsByItemId(String id) {
-        return itemDao.getLiftsByItemId(id);
-    }
 
 }
