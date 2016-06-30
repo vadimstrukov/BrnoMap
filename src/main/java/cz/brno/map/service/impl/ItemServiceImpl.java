@@ -1,6 +1,6 @@
-package cz.brno.map.service.Impl;
+package cz.brno.map.service.impl;
 
-import cz.brno.map.utils.HttpHelper;
+import cz.brno.map.dao.ItemDao;
 import cz.brno.map.model.ItemEntity;
 import cz.brno.map.service.ItemService;
 import org.springframework.stereotype.Service;
@@ -19,16 +19,16 @@ import java.util.List;
 public class ItemServiceImpl implements ItemService {
 
     @Inject
-    private HttpHelper httpHelper;
+    private ItemDao itemDao;
 
     @Override
     public ItemEntity findById(final String id) {
-        return httpHelper.getBody().getEntityList().stream().filter(item->item.getId().equals(id)).findFirst().orElse(null);
+        return itemDao.findById(id);
     }
 
     @Override
     public List<ItemEntity> findAll() {
-        return httpHelper.getBody().getEntityList();
+        return itemDao.findAll();
     }
 
     @Override
