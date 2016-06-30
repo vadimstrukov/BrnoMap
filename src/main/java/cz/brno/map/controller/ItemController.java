@@ -2,6 +2,7 @@ package cz.brno.map.controller;
 
 import cz.brno.map.model.ItemEntity;
 import cz.brno.map.service.ItemService;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
