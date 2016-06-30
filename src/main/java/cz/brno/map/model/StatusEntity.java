@@ -1,6 +1,5 @@
 package cz.brno.map.model;
 
-import cz.brno.map.utils.DateAdapter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,7 +9,6 @@ import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -25,7 +23,6 @@ public class StatusEntity implements Serializable {
     @Getter
     @Setter
     @XmlElement(name = "stamp")
-    @XmlJavaTypeAdapter(DateAdapter.class)
     private Date date;
 
     @Getter

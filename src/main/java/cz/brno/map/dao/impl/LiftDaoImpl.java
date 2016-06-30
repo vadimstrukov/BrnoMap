@@ -8,7 +8,9 @@ import cz.brno.map.utils.IConverter;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Created by doc on 30.06.2016.
@@ -48,5 +50,19 @@ public class LiftDaoImpl implements LiftDao {
                 filter(item -> item.getId().equals(itemId)).findFirst().orElse(null).
                 getLiftsCollection().getEntityList().stream().
                 filter(lift -> lift.getId().equals(liftId)).findFirst().orElse(null);
+    }
+
+    @Override
+    public List<LiftEntity> findLiftsByDate(Date date) {
+        return converter.deserialize(LiftsCollection.class).getEntityList().stream().
+                filter(item -> item.getStatusEntity().getDate().equals(date)).collect(Collectors.toList());
+    }
+
+    @Override
+    public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
+        return itemsConverter.deserialize(ItemsCollection.class).getEntityList().stream().
+                filter(item->item.getId().equals(itemid)).findFirst().orElse(null).
+                getLiftsCollection().getEntityList().stream().
+                filter(item->item.getStatusEntity().getDate().equals(date)).collect(Collectors.toList());
     }
 }

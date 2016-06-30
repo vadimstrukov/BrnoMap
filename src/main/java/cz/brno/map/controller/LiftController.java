@@ -2,15 +2,17 @@ package cz.brno.map.controller;
 
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.service.LiftService;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -22,8 +24,6 @@ public class LiftController {
 
     @Inject
     private LiftService liftService;
-
-
 
     @RequestMapping(value = "/lifts/{id}", method = RequestMethod.GET)
     public ResponseEntity<LiftEntity> getById(@PathVariable("id") String id){
@@ -43,5 +43,17 @@ public class LiftController {
     @RequestMapping(value = "/items/{id}/lifts/{liftid}", method = RequestMethod.GET)
     public ResponseEntity<LiftEntity> getLiftByItemIdAndLiftId(@PathVariable("id") String id, @PathVariable("liftid") String liftid){
         return new ResponseEntity<>(liftService.findLiftByItemIdAndLiftId(id, liftid), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/lifts", method = RequestMethod.GET)
+    public ResponseEntity<List<LiftEntity>> getLiftsByDate(@RequestParam("date") Date date){
+        return new ResponseEntity<>(liftService.findLiftsByDate(date), HttpStatus.OK);
+    }
+
+    //not working yet
+    @RequestMapping(value = "/items/{id}/lifts/date", method = RequestMethod.GET)
+    public ResponseEntity<List<LiftEntity>> getLiftsByItemIdAndDate(@PathVariable("id") String id,
+                                                                    @RequestParam("value") Date date){
+        return new ResponseEntity<>(liftService.findLiftsByItemIdAndDate(id, date), HttpStatus.OK);
     }
 }

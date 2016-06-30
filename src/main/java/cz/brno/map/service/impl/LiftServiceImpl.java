@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -30,6 +31,16 @@ public class LiftServiceImpl implements LiftService {
     @Override
     public LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId) {
         return liftDao.findLiftByItemIdAndLiftId(itemId, liftId);
+    }
+
+    @Override
+    public List<LiftEntity> findLiftsByDate(Date date) {
+        return liftDao.findLiftsByDate(date);
+    }
+
+    @Override
+    public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
+        return liftDao.findLiftsByItemIdAndDate(itemid, date);
     }
 
     @Override
