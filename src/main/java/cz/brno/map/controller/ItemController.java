@@ -1,14 +1,15 @@
 package cz.brno.map.controller;
 
 import cz.brno.map.model.ItemEntity;
+import cz.brno.map.model.LiftEntity;
+import cz.brno.map.model.SlopeEntity;
 import cz.brno.map.service.ItemService;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.inject.Inject;
@@ -25,13 +26,23 @@ public class ItemController {
     @Inject
     private ItemService itemService;
 
-    @RequestMapping(value = "/items", method = RequestMethod.GET)
-    public ResponseEntity<ItemEntity> getById(@RequestParam(value = "id") String id){
+    @RequestMapping(value = "/items/{id}", method = RequestMethod.GET)
+    public ResponseEntity<ItemEntity> getById(@PathVariable("id") String id){
         return new ResponseEntity<>(itemService.findById(id), HttpStatus.OK);
     }
 
     @RequestMapping(value = "/items/all", method = RequestMethod.GET)
     public ResponseEntity<List<ItemEntity>> getAll(){
         return new ResponseEntity<>(itemService.findAll(), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/items/{id}/slopes", method = RequestMethod.GET)
+    public ResponseEntity<List<SlopeEntity>> getSlopesByItemId(@PathVariable("id") String id){
+        return new ResponseEntity<>(itemService.getSlopesByItemId(id), HttpStatus.OK);
+    }
+
+    @RequestMapping(value = "/items/{id}/lifts", method = RequestMethod.GET)
+    public ResponseEntity<List<LiftEntity>> getLiftsByItemId(@PathVariable("id") String id){
+        return new ResponseEntity<>(itemService.getLiftsByItemId(id), HttpStatus.OK);
     }
 }
