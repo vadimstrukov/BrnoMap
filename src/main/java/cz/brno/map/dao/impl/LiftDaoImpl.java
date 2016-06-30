@@ -2,7 +2,6 @@ package cz.brno.map.dao.impl;
 
 import com.google.common.collect.Lists;
 import cz.brno.map.dao.LiftDao;
-import cz.brno.map.model.ItemEntity;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.model.collection.ItemsCollection;
 import cz.brno.map.utils.IConverter;
@@ -25,13 +24,8 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public List<LiftEntity> findAll() {
-
         List<LiftEntity> temp = Lists.newArrayList();
-
-        for (ItemEntity item : converter.deserialize(ItemsCollection.class).getEntityList()){
-            temp.addAll(item.getLiftsCollection().getEntityList());
-        }
-
+        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> temp.addAll(item.getLiftsCollection().getEntityList()));
         return temp;
     }
 
@@ -39,7 +33,7 @@ public class LiftDaoImpl implements LiftDao {
     public LiftEntity findById(String id) {
         return findAll().stream().filter(lift -> lift.getId().equals(id)).findFirst().orElse(null);
     }
-    
+
     @Override
     public List<LiftEntity> findLiftsByItemId(String id) {
        return converter.deserialize(ItemsCollection.class).getEntityList().stream().

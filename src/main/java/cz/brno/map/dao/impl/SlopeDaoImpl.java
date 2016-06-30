@@ -2,7 +2,6 @@ package cz.brno.map.dao.impl;
 
 import com.google.common.collect.Lists;
 import cz.brno.map.dao.SlopeDao;
-import cz.brno.map.model.ItemEntity;
 import cz.brno.map.model.SlopeEntity;
 import cz.brno.map.model.collection.ItemsCollection;
 import cz.brno.map.utils.IConverter;
@@ -23,13 +22,8 @@ public class SlopeDaoImpl implements SlopeDao {
 
     @Override
     public List<SlopeEntity> findAll() {
-
         List<SlopeEntity> temp = Lists.newArrayList();
-
-        for (ItemEntity item : converter.deserialize(ItemsCollection.class).getEntityList()){
-            temp.addAll(item.getSlopesCollection().getEntityList());
-        }
-
+        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> temp.addAll(item.getSlopesCollection().getEntityList()));
         return temp;
     }
 
