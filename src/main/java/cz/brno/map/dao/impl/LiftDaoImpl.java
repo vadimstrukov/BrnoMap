@@ -5,11 +5,14 @@ import cz.brno.map.dao.LiftDao;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.model.collection.ItemsCollection;
 import cz.brno.map.utils.IConverter;
+import org.apache.commons.lang.time.DateUtils;
 import org.springframework.stereotype.Repository;
 
 import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 /**
@@ -24,9 +27,9 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public List<LiftEntity> findAll() {
-        List<LiftEntity> temp = Lists.newArrayList();
-        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> temp.addAll(item.getLiftsCollection().getEntityList()));
-        return temp;
+        List<LiftEntity> lifts = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> lifts.addAll(item.getLiftsCollection().getEntityList()));
+        return lifts;
     }
 
     @Override
@@ -51,15 +54,21 @@ public class LiftDaoImpl implements LiftDao {
 
     @Override
     public List<LiftEntity> findLiftsByDate(Date date) {
-        return null;
+        List<LiftEntity> liftsWithDate = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().
+                stream().forEach(item -> liftsWithDate.addAll(item.getLiftsCollection().getEntityList().
+                stream().filter(lift-> Optional.ofNullable(lift.getLiftStatusEntity().getDate()).
+                filter(date1 -> DateUtils.isSameDay(date1, date)).isPresent()).collect(Collectors.toList())));
+        return liftsWithDate;
     }
 
     @Override
     public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
-//        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
-//                filter(item->item.getId().equals(itemid)).findFirst().orElse(null).
-//                getLiftsCollection().getEntityList().stream().
-//                filter(item->item.getLiftStatusEntity().getDate().equals(date)).collect(Collectors.toList());
-        return null;
+        List<LiftEntity> liftsWithDate = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().
+                stream().filter(item->item.getId().equals(itemid)).forEach(item -> liftsWithDate.addAll(item.getLiftsCollection().getEntityList().
+                stream().filter(lift-> Optional.ofNullable(lift.getLiftStatusEntity().getDate()).
+                filter(date1 -> DateUtils.isSameDay(date1, date)).isPresent()).collect(Collectors.toList())));
+        return liftsWithDate;
     }
 }

@@ -4,6 +4,7 @@ import cz.brno.map.dao.base.BaseDao;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.model.SlopeEntity;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,4 +13,6 @@ import java.util.List;
 public interface SlopeDao extends BaseDao<SlopeEntity> {
     List<SlopeEntity> findSlopesByItemId(String id);
     SlopeEntity findSlopeByItemIdAndSlopeId(String itemId, String slopeId);
+    List<SlopeEntity> findSlopesByDate(Date date);
+    List<SlopeEntity> findSlopesByItemIdAndDate(String itemid, Date date);
 }

@@ -1,5 +1,6 @@
 package cz.brno.map.controller;
 
+import cz.brno.map.config.RestBinder;
 import cz.brno.map.model.LiftEntity;
 import cz.brno.map.service.LiftService;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
@@ -20,10 +21,11 @@ import java.util.List;
  */
 @RestController
 @RequestMapping(value = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
-public class LiftController {
+public class LiftController extends RestBinder{
 
     @Inject
     private LiftService liftService;
+
 
     @RequestMapping(value = "/lifts/{id}", method = RequestMethod.GET)
     public ResponseEntity<LiftEntity> getById(@PathVariable("id") String id){
@@ -45,15 +47,14 @@ public class LiftController {
         return new ResponseEntity<>(liftService.findLiftByItemIdAndLiftId(id, liftid), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/lifts", method = RequestMethod.GET)
-    public ResponseEntity<List<LiftEntity>> getLiftsByDate(@RequestParam("date") Date date){
+    @RequestMapping(value = "/lifts/date", method = RequestMethod.GET)
+    public ResponseEntity<List<LiftEntity>> getLiftsByDate(@RequestParam("value") Date date){
         return new ResponseEntity<>(liftService.findLiftsByDate(date), HttpStatus.OK);
     }
 
-    //not working yet
     @RequestMapping(value = "/items/{id}/lifts/date", method = RequestMethod.GET)
-    public ResponseEntity<List<LiftEntity>> getLiftsByItemIdAndDate(@PathVariable("id") String id,
-                                                                    @RequestParam("value") Date date){
+    public ResponseEntity<List<LiftEntity>> getLiftsByItemIdAndDate(@PathVariable("id") String id, @RequestParam("value")  Date date){
         return new ResponseEntity<>(liftService.findLiftsByItemIdAndDate(id, date), HttpStatus.OK);
     }
+
 }

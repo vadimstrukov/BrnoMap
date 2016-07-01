@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,6 +28,16 @@ public class SlopeServiceImpl implements SlopeService{
     @Override
     public SlopeEntity findSlopeByItemIdAndSlopeId(String itemId, String slopeId) {
         return slopeDao.findSlopeByItemIdAndSlopeId(itemId, slopeId);
+    }
+
+    @Override
+    public List<SlopeEntity> findSlopesByDate(Date date) {
+        return slopeDao.findSlopesByDate(date);
+    }
+
+    @Override
+    public List<SlopeEntity> findSlopesByItemIdAndDate(String itemid, Date date) {
+        return slopeDao.findSlopesByItemIdAndDate(itemid, date);
     }
 
     @Override
