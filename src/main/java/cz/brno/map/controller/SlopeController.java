@@ -48,7 +48,7 @@ public class SlopeController extends RestBinder {
         return new ResponseEntity<>(slopeService.findSlopesByDate(date), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/items/{id}/lifts/date", method = RequestMethod.GET)
+    @RequestMapping(value = "/items/{id}/slopes/date", method = RequestMethod.GET)
     public ResponseEntity<List<SlopeEntity>> getSlopesByItemIdAndDate(@PathVariable("id") String id, @RequestParam("value")  Date date){
         return new ResponseEntity<>(slopeService.findSlopesByItemIdAndDate(id, date), HttpStatus.OK);
     }
