@@ -11,9 +11,11 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import org.springframework.web.filter.CorsFilter;
 
+// Class that contains configurations for Rest service
 @Configuration
 public class RestConfiguration {
 
+    // Method that enables CORS filter on the Rest service
     @Bean
     public FilterRegistrationBean corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();

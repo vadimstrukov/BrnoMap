@@ -11,7 +11,6 @@ import org.springframework.stereotype.Repository;
 import javax.inject.Inject;
 import java.util.Date;
 import java.util.List;
-import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -19,24 +18,33 @@ import java.util.stream.Collectors;
  * Created by doc on 30.06.2016.
  */
 
+// Lift DAO interface implementation
 @Repository
 public class LiftDaoImpl implements LiftDao {
 
     @Inject
     IConverter<ItemsCollection> converter;
 
+    // Method for getting all Lift entities
+    // Method collects all Lifts from all Items into array which is returned in the end
     @Override
     public List<LiftEntity> findAll() {
-        List<LiftEntity> lifts = Lists.newArrayList();
-        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> lifts.addAll(item.getLiftsCollection().getEntityList()));
-        return lifts;
+        List<LiftEntity> allLifts = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> allLifts.addAll(item.getLiftsCollection().getEntityList()));
+        return allLifts;
     }
 
+    // Method for getting specific Lift by his ID
+    // Method takes all Lifts and filters by specific Lift ID
     @Override
     public LiftEntity findById(String id) {
-        return findAll().stream().filter(lift -> lift.getId().equals(id)).findFirst().orElse(null);
+        List<LiftEntity> allLifts = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> allLifts.addAll(item.getLiftsCollection().getEntityList()));
+        return allLifts.stream().filter(lift -> lift.getId().equals(id)).findFirst().orElse(null);
     }
 
+    // Method for getting Lifts by Item ID
+    // Method finds specific Item by his ID, then returns Item Lifts
     @Override
     public List<LiftEntity> findLiftsByItemId(String id) {
        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
@@ -44,6 +52,8 @@ public class LiftDaoImpl implements LiftDao {
                getLiftsCollection().getEntityList();
     }
 
+    // Method for getting specific Lift by his ID and also by Item ID
+    // Method finds specific Item by his ID, then filters Lifts and finds specific one by his ID
     @Override
     public LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId) {
         return converter.deserialize(ItemsCollection.class).getEntityList().stream().
@@ -52,6 +62,8 @@ public class LiftDaoImpl implements LiftDao {
                 filter(lift -> lift.getId().equals(liftId)).findFirst().orElse(null);
     }
 
+    // Method for getting all Lifts by specific Date
+    // Method collects from all Items their Lifts and filters by specific date
     @Override
     public List<LiftEntity> findLiftsByDate(Date date) {
         List<LiftEntity> liftsWithDate = Lists.newArrayList();
@@ -62,6 +74,8 @@ public class LiftDaoImpl implements LiftDao {
         return liftsWithDate;
     }
 
+    // Method for getting Lifts by specific Date and by Item ID
+    // Method collects all Lifts from specific Item and filters by specific date
     @Override
     public List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date) {
         List<LiftEntity> liftsWithDate = Lists.newArrayList();

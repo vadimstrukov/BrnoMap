@@ -13,6 +13,9 @@ import java.util.List;
 /**
  * Created by strukov on 6/30/16.
  */
+
+// Slope Service interface implementation
+// Class uses SlopeDao injection to use Slope DAO methods
 @Service
 @Transactional
 public class SlopeServiceImpl implements SlopeService{

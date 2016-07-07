@@ -18,6 +18,7 @@ import java.util.Date;
 @XmlRootElement(name = "stav")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class LiftStatusEntity implements Serializable {
+
     @Getter
     @Setter
     @XmlElement(name = "stamp")

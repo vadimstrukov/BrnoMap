@@ -9,9 +9,13 @@ import java.util.List;
 /**
  * Created by strukov on 6/30/16.
  */
+
+// Lift Service interface, which extends from general Service interface
 public interface LiftService extends BaseService<LiftEntity>{
+
     List<LiftEntity> findLiftsByItemId(String id);
     LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId);
     List<LiftEntity> findLiftsByDate(Date date);
     List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date);
+
 }

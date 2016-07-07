@@ -2,8 +2,6 @@ package cz.brno.map.service.impl;
 
 import cz.brno.map.dao.ItemDao;
 import cz.brno.map.model.ItemEntity;
-import cz.brno.map.model.LiftEntity;
-import cz.brno.map.model.SlopeEntity;
 import cz.brno.map.service.ItemService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +14,8 @@ import java.util.List;
  * Created by strukov on 6/29/16.
  */
 
+// Item Service interface implementation
+// Class uses ItemDao injection to use Item DAO methods
 @Service
 @Transactional
 public class ItemServiceImpl implements ItemService {

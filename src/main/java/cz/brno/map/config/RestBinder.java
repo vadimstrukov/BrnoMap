@@ -10,6 +10,8 @@ import java.util.Date;
 /**
  * Created by strukov on 7/1/16.
  */
+
+// Special class that helps controllers to get right date from GET request
 public abstract class RestBinder {
 
     @InitBinder
