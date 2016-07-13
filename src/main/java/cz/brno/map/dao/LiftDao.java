@@ -9,9 +9,13 @@ import java.util.List;
 /**
  * Created by doc on 30.06.2016.
  */
+
+// Lift DAO interface, which extends from general DAO interface
 public interface LiftDao  extends BaseDao<LiftEntity> {
+
     List<LiftEntity> findLiftsByItemId(String id);
     LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId);
     List<LiftEntity> findLiftsByDate(Date date);
     List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date);
+
 }

@@ -1,11 +1,8 @@
 package cz.brno.map.service.impl;
 
-import cz.brno.map.dao.ItemDao;
 import cz.brno.map.dao.LiftDao;
 import cz.brno.map.model.LiftEntity;
-import cz.brno.map.model.collection.LiftsCollection;
 import cz.brno.map.service.LiftService;
-import cz.brno.map.utils.IConverter;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,6 +13,9 @@ import java.util.List;
 /**
  * Created by strukov on 6/30/16.
  */
+
+// Lift Service interface implementation
+// Class uses LiftDao injection to use Lift DAO methods
 @Service
 @Transactional
 public class LiftServiceImpl implements LiftService {

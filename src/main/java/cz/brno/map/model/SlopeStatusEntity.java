@@ -4,11 +4,12 @@ import cz.brno.map.utils.DateTimeXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.xml.bind.annotation.*;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.io.Serializable;
-import java.time.OffsetDateTime;
-import java.time.ZonedDateTime;
 import java.util.Date;
 
 /**
@@ -18,7 +19,6 @@ import java.util.Date;
 @XmlRootElement(name = "stav")
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SlopeStatusEntity implements Serializable {
-
 
     @Getter
     @Setter

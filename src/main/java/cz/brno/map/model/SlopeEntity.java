@@ -17,9 +17,8 @@ import java.io.Serializable;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class SlopeEntity implements Serializable {
 
-    @Getter @Setter
     @XmlElement(name = "id-aldr")
-    private String id;
+    @Getter @Setter private String id;
 
     @XmlElement(name = "nazev")
     @Getter @Setter private String name;

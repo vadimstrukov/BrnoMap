@@ -38,8 +38,6 @@ public class LiftEntity implements Serializable {
     @Getter @Setter
     private LiftStatusEntity liftStatusEntity;
 
-
-
     public String toString(){
         return "Id: "+ id + "\t" +
                 "Name: " + name + "\t" +

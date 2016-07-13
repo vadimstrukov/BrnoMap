@@ -8,6 +8,8 @@ import java.util.TimeZone;
 /**
  * Created by strukov on 6/30/16.
  */
+
+// Special class that helps to parse date from XML that we get from API
 public class DateTimeXmlAdapter extends XmlAdapter<String, Date> {
 
     private final SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");

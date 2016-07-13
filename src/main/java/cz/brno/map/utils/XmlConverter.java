@@ -8,23 +8,25 @@ import org.apache.http.impl.client.HttpClients;
 import org.apache.http.util.EntityUtils;
 import org.springframework.stereotype.Component;
 
-import javax.inject.Inject;
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
 import java.io.IOException;
-import java.io.InputStream;
 
 
 /**
  * Created by strukov on 6/29/16.
  */
+
+// Main class for XML parsing
 @Component
 public class XmlConverter<T> implements IConverter<T> {
 
+    // API URL with password
     private static final String URL = "http://www.aldr.cz/download/seznam.cz?password=W5xrLAZ-2755";
 
-
+    // Method deserializes given XML from URL
+    // Used JAXB XML parser
     @Override
     @SuppressWarnings(value = "unchecked")
     //TODO: more than one class can be added

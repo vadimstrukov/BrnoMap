@@ -9,9 +9,13 @@ import java.util.List;
 /**
  * Created by strukov on 6/30/16.
  */
+
+// Slope Service interface, which extends from general Service interface
 public interface SlopeService extends BaseService<SlopeEntity>{
+
     List<SlopeEntity> findSlopesByItemId(String id);
     SlopeEntity findSlopeByItemIdAndSlopeId(String itemId, String slopeId);
     List<SlopeEntity> findSlopesByDate(Date date);
     List<SlopeEntity> findSlopesByItemIdAndDate(String itemid, Date date);
+
 }
