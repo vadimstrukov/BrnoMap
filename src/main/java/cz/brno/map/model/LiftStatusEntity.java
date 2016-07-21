@@ -31,5 +31,5 @@ public class LiftStatusEntity implements Serializable {
     @Setter
     @XmlElement(name = "otevren")
     @XmlJavaTypeAdapter(StatusXmlAdapter.class)
-    private StatusEnum status;
+    private String status;
 }

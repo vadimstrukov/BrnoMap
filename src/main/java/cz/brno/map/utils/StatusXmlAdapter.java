@@ -7,15 +7,15 @@ import javax.xml.bind.annotation.adapters.XmlAdapter;
 /**
  * Created by strukov on 7/21/16.
  */
-public class StatusXmlAdapter extends XmlAdapter<Integer, StatusEnum> {
+public class StatusXmlAdapter extends XmlAdapter<Integer, String> {
 
     @Override
-    public StatusEnum unmarshal(Integer statusCode) throws Exception {
-        return StatusEnum.values()[statusCode];
+    public String unmarshal(Integer statusCode) throws Exception {
+        return StatusEnum.values()[statusCode].getStatusText();
     }
 
     @Override
-    public Integer marshal(StatusEnum v) throws Exception {
+    public Integer marshal(String v) throws Exception {
         return null;
     }
 }

@@ -32,5 +32,5 @@ public class SlopeStatusEntity implements Serializable {
     @Setter
     @XmlElement(name = "otevrena")
     @XmlJavaTypeAdapter(StatusXmlAdapter.class)
-    private StatusEnum status;
+    private String status;
 }
