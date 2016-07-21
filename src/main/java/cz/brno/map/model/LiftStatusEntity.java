@@ -1,6 +1,8 @@
 package cz.brno.map.model;
 
+import cz.brno.map.enums.StatusEnum;
 import cz.brno.map.utils.DateTimeXmlAdapter;
+import cz.brno.map.utils.StatusXmlAdapter;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -28,5 +30,6 @@ public class LiftStatusEntity implements Serializable {
     @Getter
     @Setter
     @XmlElement(name = "otevren")
-    private int status;
+    @XmlJavaTypeAdapter(StatusXmlAdapter.class)
+    private StatusEnum status;
 }
