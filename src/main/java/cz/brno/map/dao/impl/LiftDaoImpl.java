@@ -39,7 +39,7 @@ public class LiftDaoImpl implements LiftDao {
     @Override
     public LiftEntity findById(String id) {
         List<LiftEntity> allLifts = Lists.newArrayList();
-        converter.deserialize(ItemsCollection.class).getEntityList().stream().forEach(item -> allLifts.addAll(item.getLiftsCollection().getEntityList()));
+        converter.deserialize(ItemsCollection.class).getEntityList().forEach(item -> allLifts.addAll(item.getLiftsCollection().getEntityList()));
         return allLifts.stream().filter(lift -> lift.getId().equals(id)).findFirst().orElse(null);
     }
 
@@ -50,6 +50,13 @@ public class LiftDaoImpl implements LiftDao {
        return converter.deserialize(ItemsCollection.class).getEntityList().stream().
                filter(item->item.getId().equals(id)).findFirst().orElse(null).
                getLiftsCollection().getEntityList();
+    }
+
+    @Override
+    public List<LiftEntity> findSpecificLifts(List<String> ids) {
+        List<LiftEntity> specificLifts = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().forEach(item -> specificLifts.addAll(item.getLiftsCollection().getEntityList()));
+        return specificLifts.stream().filter(lift -> ids.contains(lift.getId())).collect(Collectors.toList());
     }
 
     // Method for getting specific Lift by his ID and also by Item ID

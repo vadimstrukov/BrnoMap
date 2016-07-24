@@ -52,6 +52,13 @@ public class SlopeDaoImpl implements SlopeDao {
                 getSlopesCollection().getEntityList();
     }
 
+    @Override
+    public List<SlopeEntity> findSpecificSlopes(List<String> ids) {
+        List<SlopeEntity> specificSlopes = Lists.newArrayList();
+        converter.deserialize(ItemsCollection.class).getEntityList().forEach(item -> specificSlopes.addAll(item.getSlopesCollection().getEntityList()));
+        return specificSlopes.stream().filter(slope -> ids.contains(slope.getId())).collect(Collectors.toList());
+    }
+
     // Method for getting specific Slope by his ID and also by Item ID
     // Method finds specific Item by his ID, then filters Slopes and finds specific one by his ID
     @Override

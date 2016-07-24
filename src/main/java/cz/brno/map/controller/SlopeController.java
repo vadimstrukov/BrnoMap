@@ -38,6 +38,11 @@ public class SlopeController extends RestBinder {
         return new ResponseEntity<>(slopeService.findAll(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/slopes/specific/{ids}", method = RequestMethod.GET)
+    public ResponseEntity<List<SlopeEntity>> getSpecific(@PathVariable("ids") List<String> ids){
+        return new ResponseEntity<>(slopeService.findSpecificSlopes(ids), HttpStatus.OK);
+    }
+
     // Method for getting Slopes by Item ID
     @RequestMapping(value = "/items/{id}/slopes", method = RequestMethod.GET)
     public ResponseEntity<List<SlopeEntity>> getSlopesByItemId(@PathVariable("id") String id){

@@ -38,6 +38,11 @@ public class LiftController extends RestBinder{
         return new ResponseEntity<>(liftService.findAll(), HttpStatus.OK);
     }
 
+    @RequestMapping(value = "/lifts/specific/{ids}", method = RequestMethod.GET)
+    public ResponseEntity<List<LiftEntity>> getSpecific(@PathVariable("ids") List<String> ids){
+        return new ResponseEntity<>(liftService.findSpecificLifts(ids), HttpStatus.OK);
+    }
+
     // Method for getting Lifts by Item ID
     @RequestMapping(value = "/items/{id}/lifts", method = RequestMethod.GET)
     public ResponseEntity<List<LiftEntity>> getLiftsByItemId(@PathVariable("id") String id){

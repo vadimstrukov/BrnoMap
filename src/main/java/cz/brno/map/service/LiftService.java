@@ -14,6 +14,7 @@ import java.util.List;
 public interface LiftService extends BaseService<LiftEntity>{
 
     List<LiftEntity> findLiftsByItemId(String id);
+    List<LiftEntity> findSpecificLifts(List<String> ids);
     LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId);
     List<LiftEntity> findLiftsByDate(Date date);
     List<LiftEntity> findLiftsByItemIdAndDate(String itemid, Date date);

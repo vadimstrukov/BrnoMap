@@ -14,6 +14,7 @@ import java.util.List;
 public interface SlopeDao extends BaseDao<SlopeEntity> {
 
     List<SlopeEntity> findSlopesByItemId(String id);
+    List<SlopeEntity> findSpecificSlopes(List<String> ids);
     SlopeEntity findSlopeByItemIdAndSlopeId(String itemId, String slopeId);
     List<SlopeEntity> findSlopesByDate(Date date);
     List<SlopeEntity> findSlopesByItemIdAndDate(String itemid, Date date);

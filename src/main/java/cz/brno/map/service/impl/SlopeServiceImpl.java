@@ -29,6 +29,11 @@ public class SlopeServiceImpl implements SlopeService{
     }
 
     @Override
+    public List<SlopeEntity> findSpecificSlopes(List<String> ids) {
+        return slopeDao.findSpecificSlopes(ids);
+    }
+
+    @Override
     public SlopeEntity findSlopeByItemIdAndSlopeId(String itemId, String slopeId) {
         return slopeDao.findSlopeByItemIdAndSlopeId(itemId, slopeId);
     }

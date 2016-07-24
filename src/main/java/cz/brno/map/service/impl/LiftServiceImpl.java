@@ -29,6 +29,11 @@ public class LiftServiceImpl implements LiftService {
     }
 
     @Override
+    public List<LiftEntity> findSpecificLifts(List<String> ids) {
+        return liftDao.findSpecificLifts(ids);
+    }
+
+    @Override
     public LiftEntity findLiftByItemIdAndLiftId(String itemId, String liftId) {
         return liftDao.findLiftByItemIdAndLiftId(itemId, liftId);
     }
