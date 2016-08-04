@@ -2,7 +2,9 @@ package cz.brno.map.controller;
 
 import cz.brno.map.config.RestBinder;
 import cz.brno.map.model.LiftEntity;
+import cz.brno.map.responses.NotFoundException;
 import cz.brno.map.service.LiftService;
+import cz.brno.map.utils.IValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +27,14 @@ public class LiftController extends RestBinder{
 
     @Inject
     private LiftService liftService;
+    @Inject
+    private IValidator<LiftEntity> liftEntityValidator;
 
     // Method for getting specific Lift by his ID
+    @ExceptionHandler(NotFoundException.class)
     @RequestMapping(value = "/lifts/{id}", method = RequestMethod.GET)
     public ResponseEntity<LiftEntity> getById(@PathVariable("id") String id){
-        return new ResponseEntity<>(liftService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(liftEntityValidator.validate(id, liftService.findById(id)), HttpStatus.OK);
     }
 
     // Method for getting all Lifts -> List with Lift entities

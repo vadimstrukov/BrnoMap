@@ -3,6 +3,7 @@ package cz.brno.map.controller;
 import cz.brno.map.config.RestBinder;
 import cz.brno.map.model.SlopeEntity;
 import cz.brno.map.service.SlopeService;
+import cz.brno.map.utils.IValidator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -25,11 +26,13 @@ public class SlopeController extends RestBinder {
 
     @Inject
     private SlopeService slopeService;
+    @Inject
+    private IValidator<SlopeEntity> slopeEntityIValidator;
 
     // Method for getting specific Slope by his ID
     @RequestMapping(value = "/slopes/{id}", method = RequestMethod.GET)
     public ResponseEntity<SlopeEntity> getById(@PathVariable("id") String id){
-        return new ResponseEntity<>(slopeService.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(slopeEntityIValidator.validate(id, slopeService.findById(id)), HttpStatus.OK);
     }
 
     // Method for getting all Slopes -> List with Slope entities
