@@ -24,6 +24,7 @@ public class RestConfiguration {
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.addAllowedMethod("GET");
+        config.addAllowedMethod("POST");
         source.registerCorsConfiguration("/**", config);
         final FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
         bean.setOrder(0);
